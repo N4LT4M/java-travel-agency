@@ -26,29 +26,36 @@ che permettono all’utente di capire cosa è andato storto e di ripetere l’in
      */
         Scanner scan = new Scanner(System.in);
         String makeVacation;
+        boolean repeat = true;
+        while (repeat) {
+            System.out.println("do you want to make a travel ?  Y/N");
+            makeVacation = scan.nextLine();
+            if (makeVacation.equalsIgnoreCase("Y")) {
+                System.out.println("where do you want to travel?");
+                String getDestination = scan.nextLine();
+                System.out.println("when you want to travel? (YYY-MM-DD)");
+                String travelBeginning = scan.nextLine();
+                System.out.println("when you want to return? (YYY-MM-DD)");
+                String travelEnding = scan.nextLine();
+                //converto le date in localDate
+                LocalDate getTravelBeginning = LocalDate.parse(travelBeginning);
+                LocalDate getTravelEnding = LocalDate.parse(travelEnding);
+                //collego la classe vacation per creare l'oggetto
+                try {
+                    Vacation vacation = new Vacation(getDestination, getTravelBeginning, getTravelEnding);
+                    int daysOfStay = vacation.getDaysOfStay();
+                    System.out.println("you have booked a " + daysOfStay + " days travel in " + getDestination + " from " + getTravelBeginning + " to " + getTravelEnding + ". have a nice trip");
+                    repeat = false;
+                } catch (RuntimeException e) {
+                    System.out.println(e.getMessage());
+                }
 
-        System.out.println("do you want to make a travel ?  Y/N");
-         makeVacation = scan.nextLine();
-        if (makeVacation.equalsIgnoreCase("Y")) {
-            System.out.println("where do you want to travel?");
-            String getDestination = scan.nextLine();
-            System.out.println("when you want to travel? (YYY-MM-DD)");
-            String travelBeginning = scan.nextLine();
-            System.out.println("when you want to return? (YYY-MM-DD)");
-            String travelEnding = scan.nextLine();
-            //converto le date in localDate
-            LocalDate getTravelBeginning = LocalDate.parse(travelBeginning);
-            LocalDate getTravelEnding = LocalDate.parse(travelEnding);
-            //collego la classe vacation per creare l'oggetto
-            Vacation vacation = new Vacation(getDestination, getTravelBeginning, getTravelEnding);
-            int daysOfStay = vacation.getDaysOfStay();
-
-            System.out.println("you have booked a " + daysOfStay + " days travel in " + getDestination + " from " + getTravelBeginning + " to " + getTravelEnding + ". have a nice trip");
-
-        } else if (makeVacation.equalsIgnoreCase("N")) {
-            System.out.println("ok, goodbye");
-        } else {
-            System.out.println("you entered an invalid choice");
+            } else if (makeVacation.equalsIgnoreCase("N")) {
+                System.out.println("ok, goodbye");
+                repeat = false;
+            } else {
+                System.out.println("you entered an invalid choice");
+            }
         }
  /*
             String dateString = "2023-01-06";
