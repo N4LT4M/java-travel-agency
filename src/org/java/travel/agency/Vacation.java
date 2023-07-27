@@ -92,7 +92,7 @@ che permettono all’utente di capire cosa è andato storto e di ripetere l’in
         this.travelEnding = travelEnding;
     }
     //metodo per ottenere i giorni di vacanza
-    public int getDaysOfVacation() {
+    public int getDaysOfStay() {
         Period daysPeriod = Period.between(travelBeginning, travelEnding);
         return daysPeriod.getDays();
     }

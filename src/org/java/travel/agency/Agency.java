@@ -1,5 +1,8 @@
 package org.java.travel.agency;
 
+import java.time.LocalDate;
+import java.util.Scanner;
+
 public class Agency {
     public static void main(String[] args) {
            /*Nel progetto java-travel-agency, creare la classe Vacanza caratterizzata da:
@@ -21,6 +24,39 @@ a [destinazione] dal [data inizio formattata] al [data fine formattata]“.
 Se la creazione della vacanza genera un errore, il programma non deve interrompersi ma va gestito con dei messaggi di errore
 che permettono all’utente di capire cosa è andato storto e di ripetere l’inserimento.
      */
+        Scanner scan = new Scanner(System.in);
+        String makeVacation;
+
+        System.out.println("do you want to make a travel ?  Y/N");
+         makeVacation = scan.nextLine();
+        if (makeVacation.equalsIgnoreCase("Y")) {
+            System.out.println("where do you want to travel?");
+            String getDestination = scan.nextLine();
+            System.out.println("when you want to travel? (YYY-MM-DD)");
+            String travelBeginning = scan.nextLine();
+            System.out.println("when you want to return? (YYY-MM-DD)");
+            String travelEnding = scan.nextLine();
+            //converto le date in localDate
+            LocalDate getTravelBeginning = LocalDate.parse(travelBeginning);
+            LocalDate getTravelEnding = LocalDate.parse(travelEnding);
+            //collego la classe vacation per creare l'oggetto
+            Vacation vacation = new Vacation(getDestination, getTravelBeginning, getTravelEnding);
+            int daysOfStay = vacation.getDaysOfStay();
+
+            System.out.println("you have booked a " + daysOfStay + " days travel in " + getDestination + " from " + getTravelBeginning + " to " + getTravelEnding + ". have a nice trip");
+
+        } else if (makeVacation.equalsIgnoreCase("N")) {
+            System.out.println("ok, goodbye");
+        } else {
+            System.out.println("you entered an invalid choice");
+        }
+ /*
+            String dateString = "2023-01-06";
+            LocalDate date = LocalDate.parse(dateString);
+             */
+
+
+
 
     }
 }
