@@ -1,6 +1,6 @@
 package org.java.travel.agency;
 
-public class Agenzia {
+public class Agency {
     public static void main(String[] args) {
            /*Nel progetto java-travel-agency, creare la classe Vacanza caratterizzata da:
 - destinazione
